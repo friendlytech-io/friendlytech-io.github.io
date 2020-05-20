@@ -23,14 +23,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span>
   <span style="color:#66d9ef">attr_accessor</span> <span style="color:#e6db74">:bar</span>
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">foo</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e"></span><span style="color:#f92672"></span><span style="color:#a6e22e">foo</span>
     @bar
   <span style="color:#66d9ef">end</span>
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fail</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e"></span><span style="color:#f92672"></span><span style="color:#a6e22e">fail</span>
     <span style="color:#66d9ef">true</span>
   <span style="color:#66d9ef">raise</span>
-    <span style="color:#66d9ef">Exception</span><span style="color:#f92672">.</span>new <span style="color:#e6db74">&#34;Exception&#34;</span>
+    <span style="color:#66d9ef">Exception</span><span style="color:#f92672">.</span>new <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Exception</span><span style="color:#e6db74">&#34;</span>
   <span style="color:#66d9ef">end</span>
 <span style="color:#66d9ef">end</span>
 </code></pre></div>]]></content>
