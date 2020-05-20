@@ -3,30 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>localhost/</loc>
+    <loc>/</loc>
     <lastmod>2020-05-20T09:25:27-04:00</lastmod>
   </url>
   
   <url>
-    <loc>localhost/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2020-05-20T09:25:27-04:00</lastmod>
   </url>
   
   <url>
-    <loc>localhost/posts/test-post/</loc>
+    <loc>/posts/test-post/</loc>
     <lastmod>2020-05-20T09:25:27-04:00</lastmod>
   </url>
   
   <url>
-    <loc>localhost/blog/</loc>
+    <loc>/blog/</loc>
   </url>
   
   <url>
-    <loc>localhost/series/</loc>
+    <loc>/series/</loc>
   </url>
   
   <url>
-    <loc>localhost/tags/</loc>
+    <loc>/tags/</loc>
   </url>
   
 </urlset>
