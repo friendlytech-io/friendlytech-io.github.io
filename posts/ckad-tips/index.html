@@ -36,7 +36,7 @@
 <meta itemprop="description" content="Prep The first, and most important thing you can do, is understand the platform. If you have never used Kubernetes for any significant period of time, this guide will not help you. I waited until after I had 5&#43; years of experience before finally deciding to go ahead and grab these certifications. I was able to take the exam, triple check my work, and not feel rushed. However, I only had about 10 minutes to spare at the end.">
 <meta itemprop="datePublished" content="2020-09-15T09:19:34-04:00" />
 <meta itemprop="dateModified" content="2020-09-15T09:19:34-04:00" />
-<meta itemprop="wordCount" content="960">
+<meta itemprop="wordCount" content="1046">
 <meta itemprop="image" content=""/>
 
 
@@ -176,6 +176,11 @@
 <p>Alias kubectl to <code>k</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Example, add to ~/.bashrc</span>
 alias k<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kubectl&#39;</span>
+</code></pre></div><p>For dry runs, you can export a variable and include it on the end of your command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export dry<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--dry-run=client -o yaml&#39;</span>
+
+<span style="color:#75715e"># Use it like</span>
+k run nginx --image<span style="color:#f92672">=</span>nginx --restart<span style="color:#f92672">=</span>Never $dry
 </code></pre></div><p>Setup <code>kubectl</code> autocompletion:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Example for bash</span>
 source &lt; <span style="color:#f92672">(</span>kubectl completion bash<span style="color:#f92672">)</span>
@@ -203,6 +208,19 @@ k label deployment/myapp app<span style="color:#f92672">=</span>myapp --overwrit
 
 <span style="color:#75715e"># Update Image on Pod</span>
 k set image nginx --image<span style="color:#f92672">=</span>nginx:1.7.9
+</code></pre></div><p>Use the shorthand notation for Kubernetes API resources when they are available, you can list all resources using <code>kubectl api-resources</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">k api-resources
+
+NAME                              SHORTNAMES   APIGROUP                       NAMESPACED   KIND
+bindings                                                                      true         Binding
+componentstatuses                 cs                                          false        ComponentStatus
+configmaps                        cm                                          true         ConfigMap
+endpoints                         ep                                          true         Endpoints
+events                            ev                                          true         Event
+...
+
+<span style="color:#75715e"># Example command</span>
+k get pv,pvc -n mynamespace
 </code></pre></div><h1 id="gotchas">Gotcha&rsquo;s</h1>
 <p>The only snag I hit was when adding configMap to a Pod template as a volumeMount. I created the configMap and set all the definitions but didn&rsquo;t pay attention to one of the other containers in the pod and missed there was already a volume spec created for the pod. Since the existing volume was further down in the YAML it took precendence over the volume spec I wrote. This created some confusing errors messages as it was basically saying it could not find the volume defined in my volumeMount. Pay attention to the entire object YAML definition and make sure you arent duplicating a property thats already defined.</p>
 <h2 id="plan-of-attack">Plan of Attack</h2>
@@ -249,7 +267,7 @@ k set image nginx --image<span style="color:#f92672">=</span>nginx:1.7.9
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        960 Words
+        1046 Words
       </p>
 
       <p>
