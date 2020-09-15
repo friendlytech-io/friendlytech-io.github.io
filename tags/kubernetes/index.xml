@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>FriendlyTech.io</title>
-    <link>/</link>
-    <description>Recent content on FriendlyTech.io</description>
+    <title>kubernetes on FriendlyTech.io</title>
+    <link>/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on FriendlyTech.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 15 Sep 2020 09:19:34 -0400</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

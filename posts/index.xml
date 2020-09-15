@@ -6,34 +6,82 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Wed, 20 May 2020 09:25:27 -0400</lastBuildDate>
+        <lastBuildDate>Tue, 15 Sep 2020 09:19:34 -0400</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Test Post</title>
-            <link>/posts/test-post/</link>
-            <pubDate>Wed, 20 May 2020 09:25:27 -0400</pubDate>
+            <title>Certified Kubernetes Application Develiper (CKAD) Exam Tips</title>
+            <link>/posts/ckad-tips/</link>
+            <pubDate>Tue, 15 Sep 2020 09:19:34 -0400</pubDate>
             
-            <guid>/posts/test-post/</guid>
-            <description>This is some test content to see the layout of posts.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
-            <content type="html"><![CDATA[<p>This is some test content to see the layout of posts.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span>
-  <span style="color:#66d9ef">attr_accessor</span> <span style="color:#e6db74">:bar</span>
+            <guid>/posts/ckad-tips/</guid>
+            <description>Prep The first, and most important thing you can do, is understand the platform. If you have never used Kubernetes for any significant period of time, this guide will not help you. I waited until after I had 5+ years of experience before finally deciding to go ahead and grab these certifications. I was able to take the exam, triple check my work, and not feel rushed. However, I only had about 10 minutes to spare at the end.</description>
+            <content type="html"><![CDATA[<h1 id="prep">Prep</h1>
+<p>The first, and most important thing you can do, is understand the platform. If you have never used Kubernetes for any significant period of time, this guide will not help you. I waited until after I had 5+ years of experience before finally deciding to go ahead and grab these certifications. I was able to take the exam, triple check my work, and not feel rushed. However, I only had about 10 minutes to spare at the end.</p>
+<p>For the exam, you are allowed to have one other chrome tab open for official Kubernetes documentation. You should NOT need to reference documentation to figure out what you need to do. If you don&rsquo;t understand the concepts well enough, continue practicing, doing labs, and getting experience. The Kubernetes documentation should only be used for quickly grabbing example YAML to create primitives that cannot be generated, (IE: PersistentVolumes, PersistentVolumeClaims, etc) and adding those objects to Pods.</p>
+<h2 id="exercises">Exercises</h2>
+<p>Roll through the following exercises and get comfortable with the topics, then try to do them with out referencing the documentation, limit yourself to just <code>kubectl explain</code>. Also look at the commands to see additional ways of doing things. Workflow tweaks can help speed up the time it takes for you to complete a task.</p>
+<ul>
+<li><a href="https://github.com/dgkanatsios/CKAD-exercises">https://github.com/dgkanatsios/CKAD-exercises</a></li>
+</ul>
+<h2 id="bookmarks">Bookmarks</h2>
+<p>Create a link to the <code>kubectl</code> cheat sheet. Set chrome to always show bookmarks bar.</p>
+<p>Create Bookmarks for all Kubernetes Primitives, make sure you are using the heading anchor to take you immediately to the YAML example. This will allow you to quickly grab and modify the YAML.</p>
+<h1 id="speed">Speed</h1>
+<h2 id="general">General</h2>
+<p>Some questions will have you write to a pre-existing file, and you do not have write access. You can use <code>sudo -i</code> in terminal to avoid needing to elevate privs later on or I prefered to just append <code>| sudo tee -a &lt;pre-created file path&gt;</code>.</p>
+<h2 id="shell-tweaks">Shell Tweaks</h2>
+<p>Shell stuff to speed up commands:</p>
+<p>Alias kubectl to <code>k</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Example, add to ~/.bashrc</span>
+alias k<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kubectl&#39;</span>
+</code></pre></div><p>Setup <code>kubectl</code> autocompletion:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Example for bash</span>
+source &lt; <span style="color:#f92672">(</span>kubectl completion bash<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="vim">VIM</h2>
+<p>Make sure you know VIM well enough to get around.</p>
+<p>Make sure VIM is friendly for YAML editing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#75715e">&#34; Add to ~/.vimrc, may need to create file</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">et</span>              <span style="color:#75715e">&#34; Expand Tabs</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ts</span>=<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">sw</span>=<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">sts</span>=<span style="color:#ae81ff">2</span> <span style="color:#75715e">&#34; Set TabStop, ShiftWidth, and SoftTabStop to 2</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Quick tips for increasing speed in VIM:</p>
+<ul>
+<li>Fast save/exit: <code>ZZ</code> (hold shift and hit z key twice)</li>
+<li>Delete to end of line: Position cursor and hit <code>D</code> to delete to end of line</li>
+<li>To change a word: <code>cw</code> to delete a single word and auto-switch to insert mode. use <code>c[n]w</code> to change a number of works, ie: <code>c2w</code> will wipe out 2 words and put you into insert mode.</li>
+<li>Move forward by words: use <code>w</code> to move to start of next word, similarly to above, prefix command w/ a number to move that many number of words over.</li>
+<li>Move backwards by words: use <code>b</code>, same situation as above for skipping multiple.</li>
+</ul>
+<h2 id="kubectl">Kubectl</h2>
+<p>Use <code>kubectl</code> to generate YAML, if a primitive cant be created via YAML, use the bookmark to grab an example and modify it. NEVER CREATE FROM SCRATCH.</p>
+<p>Use <code>kubectl explain</code> to drill down into resource definitions and find property names you might not be 100% sure of. Example you can&rsquo;t remember if it&rsquo;s storageClass or storageClassName, use <code>k explain pv.spec</code>. Continue to drill down to see additional attributes under that property: <code>k explain pv.spec.storageClassName</code></p>
+<p>In cases where you need to add/modify labels or images, use the built-in kubectl commands. It will be faster than doing a <code>kubectl edit &lt;object&gt;</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Labeling</span>
+k label deployment/myapp app<span style="color:#f92672">=</span>mapp              <span style="color:#75715e"># Adds a label to a Deployment</span>
+k label deployment/myapp app<span style="color:#f92672">=</span>myapp --overwrite <span style="color:#75715e"># Replace a label that may be incorrect</span>
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e"></span><span style="color:#f92672"></span><span style="color:#a6e22e">foo</span>
-    @bar
-  <span style="color:#66d9ef">end</span>
-
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e"></span><span style="color:#f92672"></span><span style="color:#a6e22e">fail</span>
-    <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">raise</span>
-    <span style="color:#66d9ef">Exception</span><span style="color:#f92672">.</span>new <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Exception</span><span style="color:#e6db74">&#34;</span>
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div>]]></content>
+<span style="color:#75715e"># Update Image on Pod</span>
+k set image nginx --image<span style="color:#f92672">=</span>nginx:1.7.9
+</code></pre></div><h1 id="gotchas">Gotcha&rsquo;s</h1>
+<p>The only snag I hit was when adding configMap to a Pod template as a volumeMount. I created the configMap and set all the definitions but didn&rsquo;t pay attention to one of the other containers in the pod and missed there was already a volume spec created for the pod. Since the existing volume was further down in the YAML it took precendence over the volume spec I wrote. This created some confusing errors messages as it was basically saying it could not find the volume defined in my volumeMount. Pay attention to the entire object YAML definition and make sure you arent duplicating a property thats already defined.</p>
+<h2 id="plan-of-attack">Plan of Attack</h2>
+<p>At this point you should know your weaknesses, if you bump into a question that you cannot immediately resolve due to one of these weaknesses, flag it, and skip, come back to it later in your spare time.</p>
+<p>Take time to READ THE ENTIRE QUESTION, there may be information further down that you need to be successful.</p>
+<p>Use your notepad to paste in commands that you are frequently using so you can quickly refer back to them or paste them in.</p>
+<h1 id="test-day">Test Day</h1>
+<p>Use the following task list to get ready for your exam:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Have required identification handy.</li>
+<li><input disabled="" type="checkbox"> Have a large enough clear glass of water nearby. If you need a beer, coffee, soda, do not drink it during the exam. Have it before and save the beer to celebrate afterwards.</li>
+<li><input disabled="" type="checkbox"> Ensure everyone knows not to disturb you.</li>
+<li><input disabled="" type="checkbox"> Ensure desk is clean and no papers, misc electronics.</li>
+<li><input disabled="" type="checkbox"> Ensure all tasks are completed in portal (minus actually taking the exam).</li>
+<li><input disabled="" type="checkbox"> Triple check Webcam and Mic are working properly, confirm compatibility on test portal site.</li>
+<li><input disabled="" type="checkbox"> Close/Lock door, hang a sign for a friendly reminder to those who may forget.</li>
+<li><input disabled="" type="checkbox"> Make sure cellphone is in a different area and will not break concentration if it rings.</li>
+<li><input disabled="" type="checkbox"> Close all applications other than chrome and ensure notifications are stopped for your host operating system.</li>
+</ul>
+]]></content>
         </item>
         
     </channel>

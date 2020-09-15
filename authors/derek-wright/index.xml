@@ -7,19 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 20 May 2020 09:25:27 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 09:19:34 -0400</lastBuildDate>
     
 	<atom:link href="/authors/derek-wright/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Test Post</title>
-      <link>/posts/test-post/</link>
-      <pubDate>Wed, 20 May 2020 09:25:27 -0400</pubDate>
+      <title>Certified Kubernetes Application Develiper (CKAD) Exam Tips</title>
+      <link>/posts/ckad-tips/</link>
+      <pubDate>Tue, 15 Sep 2020 09:19:34 -0400</pubDate>
       
-      <guid>/posts/test-post/</guid>
-      <description>This is some test content to see the layout of posts.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+      <guid>/posts/ckad-tips/</guid>
+      <description>Prep The first, and most important thing you can do, is understand the platform. If you have never used Kubernetes for any significant period of time, this guide will not help you. I waited until after I had 5+ years of experience before finally deciding to go ahead and grab these certifications. I was able to take the exam, triple check my work, and not feel rushed. However, I only had about 10 minutes to spare at the end.</description>
     </item>
     
   </channel>
