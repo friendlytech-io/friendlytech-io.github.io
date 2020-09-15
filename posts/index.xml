@@ -29,7 +29,7 @@
 <p>Create Bookmarks for all Kubernetes Primitives, make sure you are using the heading anchor to take you immediately to the YAML example. This will allow you to quickly grab and modify the YAML.</p>
 <h1 id="speed">Speed</h1>
 <h2 id="general">General</h2>
-<p>Some questions will have you write to a pre-existing file, and you do not have write access. You can use <code>sudo -i</code> in terminal to avoid needing to elevate privs later on or I prefered to just append <code>| sudo tee -a &lt;pre-created file path&gt;</code>.</p>
+<p>Some questions will have you write to a pre-existing file, which you will not have write access to. You can use <code>sudo -i</code> in terminal to avoid needing to elevate privs later on or I prefered to just append <code>| sudo tee -a &lt;pre-created file path&gt;</code> to the command.</p>
 <h2 id="shell-tweaks">Shell Tweaks</h2>
 <p>Shell stuff to speed up commands:</p>
 <p>Alias kubectl to <code>k</code>:</p>
@@ -45,7 +45,7 @@ k run nginx --image<span style="color:#f92672">=</span>nginx --restart<span styl
 source &lt; <span style="color:#f92672">(</span>kubectl completion bash<span style="color:#f92672">)</span>
 </code></pre></div><h2 id="vim">VIM</h2>
 <p>Make sure you know VIM well enough to get around.</p>
-<p>Make sure VIM is friendly for YAML editing:</p>
+<p>Make VIM friendly for YAML editing:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#75715e">&#34; Add to ~/.vimrc, may need to create file</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">et</span>              <span style="color:#75715e">&#34; Expand Tabs</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ts</span>=<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">sw</span>=<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">sts</span>=<span style="color:#ae81ff">2</span> <span style="color:#75715e">&#34; Set TabStop, ShiftWidth, and SoftTabStop to 2</span><span style="color:#960050;background-color:#1e0010">
@@ -81,7 +81,8 @@ events                            ev                                          tr
 <span style="color:#75715e"># Example command</span>
 k get pv,pvc -n mynamespace
 </code></pre></div><h1 id="gotchas">Gotcha&rsquo;s</h1>
-<p>The only snag I hit was when adding configMap to a Pod template as a volumeMount. I created the configMap and set all the definitions but didn&rsquo;t pay attention to one of the other containers in the pod and missed there was already a volume spec created for the pod. Since the existing volume was further down in the YAML it took precendence over the volume spec I wrote. This created some confusing errors messages as it was basically saying it could not find the volume defined in my volumeMount. Pay attention to the entire object YAML definition and make sure you arent duplicating a property thats already defined.</p>
+<p>The only snag I hit was when adding configMap to a Pod template as a volumeMount. I created the configMap and set all the definitions but didn&rsquo;t pay attention to one of the other containers in the pod and missed there was already a volume spec created for the pod. Since the existing volume was further down in the YAML it took precedence over the volume spec I wrote. This created some confusing error messages saying it could not find the volume defined in my volumeMount. Pay attention to the entire object YAML definition and make sure you arent duplicating a property thats already defined.</p>
+<p>In all of the clusters, there are pre-existing objects. If you need to modify one, TAKE A BACKUP. If you delete a resource and then realize you want to set it back to its previous state, you will have no way to get it back if you didn&rsquo;t save it off first. Also be careful what resources you are deleting and not removing something from a previous question.</p>
 <h2 id="plan-of-attack">Plan of Attack</h2>
 <p>At this point you should know your weaknesses, if you bump into a question that you cannot immediately resolve due to one of these weaknesses, flag it, and skip, come back to it later in your spare time.</p>
 <p>Take time to READ THE ENTIRE QUESTION, there may be information further down that you need to be successful.</p>
