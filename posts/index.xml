@@ -10,7 +10,7 @@
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Certified Kubernetes Application Develiper (CKAD) Exam Tips</title>
+            <title>Certified Kubernetes Application Developer (CKAD) Exam Tips</title>
             <link>/posts/ckad-tips/</link>
             <pubDate>Tue, 15 Sep 2020 09:19:34 -0400</pubDate>
             
