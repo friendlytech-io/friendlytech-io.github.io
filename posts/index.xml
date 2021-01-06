@@ -6,8 +6,65 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Tue, 15 Sep 2020 09:19:34 -0400</lastBuildDate>
+        <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Send Memory Utilization Metrics to CloudWatch</title>
+            <link>/posts/aws-cloudwatch-metrics/</link>
+            <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+            
+            <guid>/posts/aws-cloudwatch-metrics/</guid>
+            <description>Below reviews 2 ways to collect extra metrics from an ec2 instance and send to cloudwatch. The first is a procedural, quick n dirty way. The second is the aws preferred way using the cloudwatch agent &amp;amp; agent configuration.
+This advice is not production ready but just to get your feet wet.
+Quick &amp;lsquo;n Dirty This is a setup for Ubuntu but pretty much everything should transfer to RHEL based. The idea is to have a cron job execute a script that checks free memory then use aws-cli to write to cloudwatch.</description>
+            <content type="html"><![CDATA[<p>Below reviews 2 ways to collect extra metrics from an ec2 instance and send to cloudwatch. The first is a procedural, <em>quick n dirty</em> way. The second is the aws preferred way using the cloudwatch agent &amp; agent configuration.</p>
+<p>This advice is not production ready but just to get your feet wet.</p>
+<h2 id="quick-n-dirty">Quick &lsquo;n Dirty</h2>
+<p>This is a setup for Ubuntu but pretty much everything should transfer to RHEL based. The idea is to have a cron job execute a script that checks free memory then use aws-cli to write to cloudwatch. You can extend by generating additional variables and doing more <code>put-metric-data</code> calls.</p>
+<ol>
+<li>
+<p>Setup a role with CloudWatch permissions and attach it to your instance.</p>
+</li>
+<li>
+<p>Install AWS CLI</p>
+</li>
+<li>
+<p>Script, i placed this at <code>~/mem.sh</code> for testing. We retrieve and inject the token to protect against SSRF.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>readonly TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -X PUT -H <span style="color:#e6db74">&#34;X-aws-ec2-metadata-token-ttl-seconds: 30&#34;</span> <span style="color:#e6db74">&#34;http://169.254.169.254/latest/api/token&#34;</span><span style="color:#66d9ef">)</span>
+USEDMEMORY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>free -m | awk <span style="color:#e6db74">&#39;NR==2{printf &#34;%.2f\t&#34;, $3*100/2 }&#39;</span><span style="color:#66d9ef">)</span>
+INSTANCE_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -H <span style="color:#e6db74">&#34;X-aws-ec2-metadata-token: </span>$TOKEN<span style="color:#e6db74">&#34;</span> http://169.254.169.254/latest/meta-data/instance-id<span style="color:#66d9ef">)</span>
+REGION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -H <span style="color:#e6db74">&#34;X-aws-ec2-metadata-token: </span>$TOKEN<span style="color:#e6db74">&#34;</span> -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep <span style="color:#e6db74">&#39;\&#34;region\&#34;&#39;</span> | cut -d<span style="color:#ae81ff">\&#34;</span> -f4<span style="color:#66d9ef">)</span>
+
+aws cloudwatch put-metric-data --metric-name memory-usage --dimensions Instance<span style="color:#f92672">=</span>$INSTANCE_ID --namespace <span style="color:#e6db74">&#34;Custom&#34;</span> --value $USEDMEMORY --region $REGION
+</code></pre></div></li>
+<li>
+<p>Create Cron job: <code>echo '*/5 * * * * ubuntu /home/ubuntu/mem.sh' | sudo tee /etc/cron.d/cw_mem</code></p>
+</li>
+</ol>
+<h2 id="aws-preferred-method">AWS Preferred Method</h2>
+<p>AWS publishes a tool, the CloudWatch Agent, which can run as a daemon and publish metrics for you. This requires a configuration file as well as systemd scaffolding. If you install via SSM the systemd files come free and only require minor tweaking.</p>
+<ol>
+<li>IAM Instance Role:
+<ul>
+<li>Cloudwatch Permissions</li>
+<li>ec2:DescribeTags</li>
+</ul>
+</li>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/download-CloudWatch-Agent-on-EC2-Instance-SSM-first.html">Install Cloudwatch Agent (prefer SSM)</a></li>
+<li>Install collectd <code>sudo apt-get update &amp;&amp; sudo apt-get install collectd</code></li>
+<li>Populate a configuration file for cloudwatch agent, <a href="https://gist.github.com/csereno/deac72776418173c4f3169b3f34c1246">example</a>. I located my file to <code>/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json</code></li>
+<li>start service:
+<ul>
+<li>manually: <code>sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a start -c  /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json</code></li>
+<li>Alternatively you can update the unit file located at <code>/etc/systemd/system/amazon-cloudwatch-agent.service</code></li>
+</ul>
+</li>
+</ol>
+<p>Thanks to Suriya @ <a href="https://www.youtube.com/watch?v=zwiVogjaaxw">https://www.youtube.com/watch?v=zwiVogjaaxw</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>Certified Kubernetes Application Developer (CKAD) Exam Tips</title>

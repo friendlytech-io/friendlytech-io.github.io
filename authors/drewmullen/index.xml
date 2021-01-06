@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FriendlyTech.io</title>
-    <link>/</link>
+    <link>/authors/drewmullen/</link>
     <description>Recent content on FriendlyTech.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/authors/drewmullen/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,15 +21,6 @@
       <description>Below reviews 2 ways to collect extra metrics from an ec2 instance and send to cloudwatch. The first is a procedural, quick n dirty way. The second is the aws preferred way using the cloudwatch agent &amp;amp; agent configuration.
 This advice is not production ready but just to get your feet wet.
 Quick &amp;lsquo;n Dirty This is a setup for Ubuntu but pretty much everything should transfer to RHEL based. The idea is to have a cron job execute a script that checks free memory then use aws-cli to write to cloudwatch.</description>
-    </item>
-    
-    <item>
-      <title>Certified Kubernetes Application Developer (CKAD) Exam Tips</title>
-      <link>/posts/ckad-tips/</link>
-      <pubDate>Tue, 15 Sep 2020 09:19:34 -0400</pubDate>
-      
-      <guid>/posts/ckad-tips/</guid>
-      <description>Prep The first, and most important thing you can do, is understand the platform. If you have never used Kubernetes for any significant period of time, this guide will not help you. I waited until after I had 5+ years of experience before finally deciding to go ahead and grab these certifications. I was able to take the exam, triple check my work, and not feel rushed. However, I only had about 10 minutes to spare at the end.</description>
     </item>
     
   </channel>
